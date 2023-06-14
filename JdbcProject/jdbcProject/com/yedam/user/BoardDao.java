@@ -14,6 +14,10 @@ public class BoardDao {
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+
+	public instance getInstance() {
+		
+	}
 	//"1.글등록  2.삭제  3.글 내용수정 4.글목록 보기 5.상세보기 6.종료."
 	
 	private void close() {
@@ -162,5 +166,7 @@ public class BoardDao {
 		return null;
 		
 	}
+	
+
 	
 }

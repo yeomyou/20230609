@@ -9,6 +9,10 @@ public class BoardMain {
 		Scanner sc = new Scanner(System.in);
 		BoardDao dao = new BoardDao();
 		int menuNo = 0;
+		UserDao userDao = new UserDao();
+		BoardProc proc = new BoardProc();
+		//로그인 기능, 아이디&비번.
+		proc.loginCheck();
 
 		loop: while (true) {
 			System.out.println("1.글등록  2.삭제  3.글 내용수정 4.글목록 보기 5.상세보기 6.종료.");

@@ -177,5 +177,25 @@ public class UserDao {
 		}
 		return list;
 	}
+	public boolean login(String id, String pw) {
+		sql = "select * from tbl_users where user_id = ? and user_pw=?";
+		conn = Dao.getConnect();
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		}catch(SQLException e ) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return false;
+	}
 
 }
