@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.board.tblBoardDao;
 import com.yedam.board.tblBoardVO;
-@WebServlet("/modify")
+@WebServlet("/board/modify")
 public class ModifyServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,7 +19,6 @@ public class ModifyServlet extends HttpServlet{
 		String content = req.getParameter("content");
 		
 		tblBoardVO board = new tblBoardVO();
-		
 		board.setBrdNo(Integer.parseInt(no));
 		board.setBrdTitle(title);
 		board.setBrdContent(content);

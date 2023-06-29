@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.calendar.dao.CalendarMapper">
+	<select id="getList">
+	select * from events
+	</select>
+	<insert id="insert" parameterType="calendar">
+	insert into events (title, start_date, end_date)
+	values ( #{title}, #{startDate}, #{endDate})
+	</insert>
+	<delete id="delete" parameterType="calendar">
+	delete from events where title = #{title}
+	</delete>
+</mapper>

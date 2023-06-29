@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.member.persistence.MemberMapper">
+  <select id="login" parameterType="member">
+  	select * 
+  	from tbl_users
+  	where user_id = #{id}
+  		and user_pw = #{pw}
+  </select>
+  <insert id="insert" parameterType="member">
+	insert into tbl_users (user_id, user_pw, user_name, user_birth, user_img)
+	values (#{userId}, #{userPw}, #{userName}, #{userBirth}, #{userImg})  
+  </insert>
+  <select id="select" parameterType="member">
+  	select *
+  	from tbl_users
+  	where user_id = #{userId}
+  </select>
+  <update id="update" parameterType="member">
+  update tbl_users
+  set user_phone = #{userPhone},
+  	  user_addr =  #{userAddr}
+  where user_id = #{userId}
+  
+  </update>
+</mapper>

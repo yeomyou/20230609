@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="myapp.homepage" template="/layouts/classic.jsp">
+    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="header" value="/tiles/banner.jsp" />
+    <put-attribute name="menu" value="/tiles/common_menu.jsp" />
+    <put-attribute name="body" value="/tiles/home_body.jsp" />
+    <put-attribute name="footer" value="/tiles/credits.jsp" />
+  </definition>
+  
+   <definition name="simple" template="/WEB-INF/layout/template.jsp">
+    <put-attribute name="title" value="simple bootstrap homepage" />
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+  </definition>
+  
+   <definition name="admin" template="/WEB-INF/admins/template.jsp">
+    <put-attribute name="title" value="admin bootstrap homepage" />
+    <put-attribute name="header" value="/WEB-INF/admins/header.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/admins/menu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/admins/body.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/admins/footer.jsp" />
+  </definition>
+  
+   <definition name="WILDCARD:admin/*" extends="admin">
+  <put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" />
+  </definition>
+  
+  
+  <definition name="WILDCARD:*/*" extends="simple">
+  <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+  <!--  		                         page = "mains/main.tiles";  -> classic.jsp -> wildcard:*/* ->  tiles 라는 파일의 {1}=mains  에 있는  {2}.jsp main.jsp를 열겠다. -->
+  </definition>
+</tiles-definitions>

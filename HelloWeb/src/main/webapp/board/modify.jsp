@@ -32,7 +32,7 @@
 				<td><input type="text" readonly value="<%=brd.getBrdWriter()%>">
 			</tr>
 			<tr>
-				<td colspan="2"><textarea rows="3" cols="30"><%=brd.getBrdContent()%></textarea></td>
+				<td colspan="2"><textarea rows="3" cols="30" name="content"><%=brd.getBrdContent()%></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
