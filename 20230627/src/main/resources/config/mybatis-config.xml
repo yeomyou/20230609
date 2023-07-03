@@ -5,9 +5,11 @@
 <configuration>
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
 	<typeAliases>
+	<typeAlias alias="reply" type="com.yedam.board.vo.ReplyVO"/>
 		<typeAlias alias="board" type="com.yedam.board.vo.BoardVO"/>
 		<typeAlias alias="Member" type="com.yedam.member.vo.MemberVO"/>
 		<typeAlias alias="Calendar" type="com.yedam.calendar.vo.CalendarVO"/>
@@ -27,6 +29,7 @@
 		</environment>
 	</environments>
 	<mappers>
+	<mapper resource="com/yedam/board/dao/ReplyMapper.xml" />
 	<mapper resource="com/yedam/board/dao/BoardMapper.xml" />
 		<mapper resource="com/yedam/member/dao/MemberMapper.xml" />
 		<mapper resource="com/yedam/calendar/dao/CalendarMapper.xml" />

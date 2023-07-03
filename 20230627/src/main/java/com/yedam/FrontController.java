@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.board.control.AddReplyControl;
 import com.yedam.board.control.BoardDetailControl;
 import com.yedam.board.control.BoardListControl;
+import com.yedam.board.control.ModifyReplyControl;
+import com.yedam.board.control.RemoveReplyControl;
+import com.yedam.board.control.ReplyControl;
+import com.yedam.board.control.ReplyListControl;
 import com.yedam.calendar.control.AddEventControl;
 import com.yedam.calendar.control.EventForm;
 import com.yedam.calendar.control.EventListControl;
@@ -23,8 +28,12 @@ import com.yedam.member.control.ChartFormControl;
 import com.yedam.member.control.ImageUploadControl;
 import com.yedam.member.control.LoginControl;
 import com.yedam.member.control.LoginFormControl;
+import com.yedam.member.control.MemberAddControl;
 import com.yedam.member.control.MemberInfoControl;
+import com.yedam.member.control.MemberInfoJson;
 import com.yedam.member.control.MemberListControl;
+import com.yedam.member.control.MemberListJquery;
+import com.yedam.member.control.MemberListJson;
 import com.yedam.member.control.MemberModifyControl;
 
 public class FrontController extends HttpServlet{
@@ -44,6 +53,13 @@ public class FrontController extends HttpServlet{
 		menu.put("/memberInfo.do", new MemberInfoControl());
 		menu.put("/memberModify.do", new MemberModifyControl());
 		menu.put("/imageUpload.do", new ImageUploadControl());
+		//
+		//jquery
+		menu.put("/memberListJquery.do", new MemberListJquery());
+		menu.put("/memberListJson.do", new MemberListJson());
+		
+		menu.put("/memberAdd.do", new MemberAddControl());
+		menu.put("/memberInfoJson.do", new MemberInfoJson());
 		
 		menu.put("/chartForm.do", new ChartFormControl());
 		menu.put("/chartData.do", new ChartDataControl());
@@ -54,9 +70,16 @@ public class FrontController extends HttpServlet{
 		menu.put("/eventList.do", new EventListControl());
 		menu.put("/addEvent.do", new AddEventControl());
 		menu.put("/removeEvent.do", new RemoveEventControl());
-		//
+		//게시판
 		menu.put("/boardList.do", new BoardListControl());
 		menu.put("/boardDetail.do", new BoardDetailControl());
+		//댓글
+		menu.put("/replyList.do", new ReplyListControl());
+		menu.put("/getReply.do", new ReplyControl());
+		menu.put("/addReply.do", new AddReplyControl());
+		menu.put("/modifyReply.do", new ModifyReplyControl());
+		menu.put("/removeReply.do", new RemoveReplyControl());
+		
 		
 	}
 	

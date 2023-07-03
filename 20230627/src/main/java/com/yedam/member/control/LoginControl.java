@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 
 import com.yedam.common.Control;
-import com.yedam.member.service.MemberServcieImpl;
+import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.vo.MemberVO;
 
@@ -17,7 +17,7 @@ public class LoginControl implements Control {
 		String id = req.getParameter("uid");
 		String pw = req.getParameter("upw");
 		
-		MemberService service = new MemberServcieImpl();
+		MemberService service = new MemberServiceImpl();
 		MemberVO result = service.login(id, pw);
 		if(result == null) {
 		return "loginForm.do";

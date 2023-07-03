@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yedam.common.Control;
-import com.yedam.member.service.MemberServcieImpl;
+import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.vo.MemberVO;
 
@@ -30,7 +30,7 @@ public class ImageUploadControl implements Control {
 			member.setUserId(id);
 			member.setUserImg(fileName);
 			
-			MemberService service = new MemberServcieImpl();
+			MemberService service = new MemberServiceImpl();
 			
 			if(service.modifyImage(member)) {
 				// {"retCode":"Success", "path": "fileName" }

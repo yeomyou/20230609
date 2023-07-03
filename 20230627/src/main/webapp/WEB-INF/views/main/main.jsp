@@ -39,8 +39,8 @@
 }
  .outer span{
  display:inline-block;
- width:80px;
- height:50px;
+ width:120px;
+ height:60px;
  margin: 2px;
  padding: 2px;
  background-color: red;
@@ -48,28 +48,51 @@
 </style>
 
 
+<p id="time"></p>
 <input type="text" id="userInput"><br>
 <br>
 <div class="outer" id="outer">
 <span>Hello</span>
 </div>
+<script src="resources/js/main6.js"></script>
 <script>
-	document.getElementById('userInput').addEventListener('change', function(e){
-		let val = document.getElementById('userInput').value
-		
-		let span = document.createElement('span');
-		span.setAttribute('id', val);
-		
-		span.innerText = document.getElementById('userInput').value;
-		document.getElementById('outer').appendChild(span);
-		document.querySelector(val).addEventListener('click', function(e){
-			e.remove();
-		});
-	});
 
+let secs = 100;
+	setInterval(function(){
+		//document.getElementById('time').innerText = new Date();
+		document.getElementById('time').innerText = secs--;
+	}, 1000);
 	
-	
+
+
+
+const strArys = [];
+let strs = '';
+document.querySelectorAll('div.outer span').forEach(function(word){
+	strs = word;
+	strArys.push(strs);
+});
+
+
+
+strAry.push();
+
+
+	document.getElementById('userInput').addEventListener('change', function(e){
+		// this.value  = 이벤트를 받는 element.		
+		let val = document.getElementById('userInput').value
+		console.log(val);
+		console.log(strArys);
+		// strArys.innerText
+		
+			document.querySelectorAll('div.outer span').forEach(function(word){
+				console.log('word'+word);
+				if(val == word.innerText){
+					word.remove();
+					}
+			});
+		
+	});
 </script>
 
 
-<script src="resources/js/main5.js"></script>

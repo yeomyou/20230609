@@ -13,7 +13,7 @@ public class BoardDetailControl implements Control {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 		BoardService service = new BoardServiceImpl(); 
-		String brdNo = req.getParameter("bno");
+		String brdNo = req.getParameter("brdNo");
 		
 		BoardVO vo = service.selectDetail(Integer.parseInt(brdNo));
 		req.setAttribute("board", vo);

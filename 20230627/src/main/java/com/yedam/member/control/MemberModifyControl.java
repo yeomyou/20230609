@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.member.service.MemberServcieImpl;
+import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.vo.MemberVO;
 
@@ -24,7 +24,7 @@ public class MemberModifyControl implements Control {
 		member.setUserPhone(ph);
 		member.setUserAddr(ad);
 
-		MemberService service = new MemberServcieImpl();
+		MemberService service = new MemberServiceImpl();
 		String json = "";
 		if (service.modifyMember(member)) {
 			json = "{\"retCode\": \"Success\"}";

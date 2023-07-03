@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.member.service.MemberServcieImpl;
+import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.service.MemberService;
 
 public class ChartDataControl implements Control {
@@ -18,7 +18,7 @@ public class ChartDataControl implements Control {
 		String json = "{\"name\":\"홍길동\", \"age\":20, \"phone\":\"010-1111-1111\"}";
 		json="";
 		
-		MemberService service = new MemberServcieImpl();
+		MemberService service = new MemberServiceImpl();
 		List<Map<String, Object>> list = service.getData();
 		json = "[";
 		int cnt = 1;

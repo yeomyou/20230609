@@ -9,7 +9,7 @@ import com.yedam.common.DataSource;
 import com.yedam.member.dao.MemberMapper;
 import com.yedam.member.vo.MemberVO;
 
-public class MemberServcieImpl implements MemberService{
+public class MemberServiceImpl implements MemberService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	MemberMapper mapper = session.getMapper(MemberMapper.class);
 	@Override
@@ -36,5 +36,9 @@ public class MemberServcieImpl implements MemberService{
 	@Override
 	public boolean modifyImage(MemberVO member) {
 		return mapper.modifyImage(member)==1;
+	}
+	@Override
+	public boolean addMember(MemberVO member) {
+		return mapper.insert(member)==1;
 	}
 }

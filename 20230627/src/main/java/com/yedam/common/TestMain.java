@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.yedam.board.dao.ReplyMapper;
+import com.yedam.board.vo.ReplyVO;
 import com.yedam.calendar.dao.CalendarMapper;
 import com.yedam.calendar.vo.CalendarVO;
 import com.yedam.member.dao.MemberMapper;
@@ -12,25 +14,26 @@ import com.yedam.member.dao.MemberMapper;
 public class TestMain {
 	public static void main(String[] args) {
 		SqlSession session = DataSource.getInstance().openSession(true);
-		CalendarMapper mapper = session.getMapper(CalendarMapper.class);
-		CalendarVO test = new CalendarVO();
+		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 		
-		test.setTitle("여행가기2");
-		
-		mapper.delete(test);
+//		ReplyVO VO = new ReplyVO();
+//		VO.setReplyNo(15);
+//		VO.setReply("bye");
 //		
-//		test.setTitle("여행가기2");
-//		test.setStartDate("2023-06-05");
-//		test.setEndDate("");
+//		mapper.insertReply(insertVO);
+//		mapper.deleteReply(1);
+//		mapper.updateReply(VO);
 		
-//		mapper.insert(test);
-		List<CalendarVO> list = mapper.getList();
 		
-		for(CalendarVO vo : list) {
-			System.out.println(vo.toString());
-			
-			
-		}
 		
+//		ReplyVO reply = mapper.selectOne(4);
+//		
+//		System.out.println(reply.toString());
+//		System.out.println("=============================");
+//		List<ReplyVO> list = mapper.selectList(4);
+//		for(ReplyVO vo : list) {
+//			System.out.println(vo.toString());
+//		}
+//		
 	}
 }

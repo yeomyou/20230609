@@ -12,13 +12,22 @@ public class BoardServiceImpl implements BoardService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	BoardMapper mapper = session.getMapper(BoardMapper.class);
 	@Override
-	public List<BoardVO> boardList() {
-		List<BoardVO> boards = mapper.boardList();
+	public List<BoardVO> boardList(int page) {
+		List<BoardVO> boards = mapper.boardList(page);
 		return boards;
 	}
 
 	@Override
 	public BoardVO selectDetail(int brdNo) {
 		return mapper.detail(brdNo);
+	}
+
+	@Override
+	public int clickCnt() {
+		return mapper.clickCnt();
+	}
+	@Override
+	public int totalCnt() {
+		return mapper.totalCnt();
 	}
 }

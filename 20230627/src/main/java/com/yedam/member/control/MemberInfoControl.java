@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.member.service.MemberServcieImpl;
+import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.vo.MemberVO;
 
@@ -17,7 +17,7 @@ public class MemberInfoControl implements Control {
 		 * admin/memberInfo.jsp
 		 */
 		
-		MemberService service = new MemberServcieImpl();
+		MemberService service = new MemberServiceImpl();
 		MemberVO member = service.getMember(req.getParameter("uid"));
 		req.setAttribute("member", member);
 		return "admin/memberInfo.tiles";

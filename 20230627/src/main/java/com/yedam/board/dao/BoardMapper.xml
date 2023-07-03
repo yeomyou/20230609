@@ -3,10 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.board.dao.BoardMapper">
-	<select id="boardList" parameterType="board">
-	select brd_no, brd_title, brd_writer, create_date, click_cnt from tbl_board order by brd_no desc
+	   <select id="boardList" parameterType="int" resultType="board">
+    select *
+from(
+        select rownum rn, a.*
+        from (
+                 select *
+                  from tbl_board order by brd_no desc
+                 ) a
+       )b
+where b.rn> (#{page}- 1 ) * 10
+	<![CDATA[
+and b.rn<= #{page} * 10
+	]]> 
 	</select>
-	
 	
 	<select id="detail" parameterType="board">
 	select * from tbl_board where brd_no = #{brdNo}
@@ -26,4 +36,12 @@
 	and b.rn <= #{page} * 5
 	</select>
 	 -->
+	 <update id="clickCnt" parameterType="int">
+  	update tbl_board set click_cnt = click_cnt+1 where brd_no=#{brdNo}
+  </update>
+    <select id="totalCnt" resultType = "int">
+  	select count(1) from tbl_board
+  </select>
+
+	
 </mapper>
