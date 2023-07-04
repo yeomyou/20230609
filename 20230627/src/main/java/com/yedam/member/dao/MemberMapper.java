@@ -17,4 +17,5 @@ public interface MemberMapper {
 	public MemberVO infoSelect(@Param("id")String id);
 	public int modifyMember(MemberVO member);
 	public int modifyImage(MemberVO member);
+	public int delete(MemberVO member);
 }

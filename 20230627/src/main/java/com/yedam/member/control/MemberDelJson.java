@@ -1,5 +1,8 @@
 package com.yedam.member.control;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,16 +13,25 @@ import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.vo.MemberVO;
 
-public class MemberInfoJson implements Control {
+public class MemberDelJson implements Control {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 		MemberService service = new MemberServiceImpl();
-		String id = req.getParameter("uid");
-		MemberVO member = service.getMember(id);
 		
+		MemberVO member = new MemberVO();
+		String id = req.getParameter("uid");
+		member.setUserId(id);
+		Map<String, String> map = new HashMap<>();
 		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(member);
+		String json = "";
+		if(service.delMember(member)) {
+			map.put("retCode", "Success");
+		}else {
+			map.put("retCode", "Fail");
+		}
+		json = gson.toJson(map);
+		
 		return json+".json";
 	}
 

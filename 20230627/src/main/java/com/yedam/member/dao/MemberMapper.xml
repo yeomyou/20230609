@@ -56,5 +56,9 @@ group by department_name
   	set	  user_img = #{userImg}
   	where user_id = #{userId}
   </update>
+  <delete id="delete" parameterType="member">
+  delete from tbl_users
+  where user_id = #{userId}
+  </delete>
 
 </mapper>

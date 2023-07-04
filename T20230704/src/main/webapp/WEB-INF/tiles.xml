@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+  
+   <definition name="shop" template="/WEB-INF/layout/template.jsp">
+    <put-attribute name="title" value="coffee shop" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+  </definition>
+
+   <definition name="WILDCARD:product/*" extends="shop">
+  <put-attribute name="body" value="/WEB-INF/jsp/product/{1}.jsp" />
+  </definition>
+  
+  
+ <!--   <definition name="WILDCARD:*/*" extends="shop">
+  <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+                      page = "mains/main.tiles";  -> classic.jsp -> wildcard:*/* ->  tiles 라는 파일의 {1}=mains  에 있는  {2}.jsp main.jsp를 열겠다.
+  </definition> -->
+</tiles-definitions>

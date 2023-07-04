@@ -25,14 +25,19 @@
 							
 							$('<td/>').text(item.userId),
 							$('<td/>').text(item.userName),
-							$('<td/>').text(item.userBirth),
+							$('<td/>').text(new Date(item.userBirth).timeFormat()),
 							$('<td/>').text(item.userPhone),
 							$('<td/>').append(
 								$('img')
-							.attr('scr' , 'images/'+item.userImg)
-							.attr('width', '25px'))
+							.attr('src' , 'images/'+item.userImg)
+							.attr('width', '25px')),
+							$('<td />').append($('<button/>').text('삭제').on('click', delFnc)  )
+							
 				)
 				tr.on('click', modifyFnc)
+					
+					
+				//$('tr:nth-child(-n+5)').on('click', modifyFnc);
 				$('#list').append(tr);
 				})
 			},
@@ -42,7 +47,28 @@
 			}
 			
 		});
-				
+		function delFnc(e){
+			console.log(e);
+			console.log($(this).parent().parent().find('td:nth-child(1)').text());
+			let id = $(this).parent().parent().find('td:nth-child(1)').text()
+			//e.stopPropagation() // 상위로 이벤트 전달 차단.
+			$.ajax({
+				url: 'memberDelJson.do',
+				method: 'post',
+				data: {uid: id},
+				success: function(result){
+					console.log(result);
+					if(result.retCode == 'Success'){
+					$(this).parent().parent().remove();						
+					}else{
+						alert('삭제실패');
+					}
+				},
+				error: function(err){
+					console.log(err);
+				}
+			})
+		}		
 		function modifyFnc(e){
 			console.log(this);
 			console.log($(this).children().eq(0).text());
@@ -58,19 +84,15 @@
 					$('#uid').val(result.userId);
 					$('#upw').val(result.userPw);
 					$('#uname').val(result.userName);
-					$('#ubi').val(result.userBirth);
+					$('#uph').val(result.userPhone);
 					$('#uad').val(result.userAddr);
-					$('#uph').val(new Date(result.userPhone).timeFormat());
+					$('#ubi').val(new Date(result.userBirth).timeFormat());
 					
 				},
 				error: function(err){
 					console.log(err)
 				}
-				
-				
 			})
-			
-			
 		}
 		//등록버튼 클릭시
 		$('form[name="myFrm"]').on('submit', submitForm);
@@ -90,7 +112,7 @@
 									
 									$('<td/>').text(item.userId),
 									$('<td/>').text(item.userName),
-									$('<td/>').text(item.userBirth),
+									$('<td/>').text(new Date(item.userBirth).timeFormat()),
 									$('<td/>').text(item.userPhone)
 						)
 					$('#list').append(tr);
@@ -101,6 +123,43 @@
 				}
 				
 			});
+		}//submit
+		
+		
+		$('#modi').on('click', editForm);
+		
+		function editForm(e){
+			e.preventDefault();
+			console.log(e);
+			
+			$.ajax({
+				url: 'memberEditJson.do',
+				method: 'post',
+				//data:  $('memberEditJson.do').serialize(),
+				data: {
+					uid : $('#uid').val(),
+					upw : $('#upw').val(),
+					uph : $('#uph').val(),
+					uad : $('#uad').val()
+				},
+				success: function(result){
+					//Array.prototype.forEach(function(item, idx, ary){})
+					//console.log(result);
+					//console.log($('#list tr'));
+					$('#list tr').each(function (idx, item) {
+						console.log(idx,item);
+						if($(item).children().eq(0).text() == result.userId){
+							$(item).children().eq(3).text(result.userPhone);
+						}
+					});
+
+				},
+				error: function(err){
+					console.log(err);
+				}
+				
+			})
+			
 		}
 		
 		
@@ -137,6 +196,7 @@
 			<td colspan="2" align="center">
 				<input type="submit" value="등록">
 				<input type="reset" value="초기화">		
+				<input type="button" value="변경" id="modi">
 			</td>
 		</tr>
 	</table>
@@ -152,12 +212,10 @@
 			<th>생일</th>
 			<th>연락처</th>
 			<th>사진</th>
+			<th>삭제</th>
 		</tr>
 	</thead>
 	<tbody id="list">
-		<tr>
-		<td>
-		</td>
-		</tr>
+
 	</tbody>
 </table>
